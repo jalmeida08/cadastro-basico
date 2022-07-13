@@ -44,7 +44,7 @@ public class ClienteController {
 	
 	@GetMapping("/{idCliente}")
 	public ResponseEntity<?> buscaClientePorId(@PathVariable("idCliente") String id){
-		ClienteDTO dto = clienteService.buscaClientePorId(id);
+		var dto = clienteService.buscaClientePorId(id);
 		return ResponseEntity.ok(dto);
 	}
 

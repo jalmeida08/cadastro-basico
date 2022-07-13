@@ -20,8 +20,13 @@ public class ResourceServerConfigure extends ResourceServerConfigurerAdapter {
         .and()
 		.authorizeRequests()
 			.antMatchers(HttpMethod.POST, "/funcionario").permitAll()
+            .antMatchers("/swagger**").permitAll()
+            .antMatchers("/springfox**").permitAll()
+            .antMatchers("/v2/api-docs").permitAll()
+            .antMatchers("/webjars/**").permitAll()
+            .antMatchers("/configuration/**").permitAll()
+            .antMatchers("/swagger-resources/**").permitAll()
 			.anyRequest().authenticated();
+		
 	}
-	
-
 }

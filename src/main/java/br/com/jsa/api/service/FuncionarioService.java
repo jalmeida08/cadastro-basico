@@ -2,6 +2,7 @@ package br.com.jsa.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class FuncionarioService {
 		return funcionarioRepository
 		.findById(id)
 		.orElseThrow(() -> new ParametroInvalidoException("O parâmetro informado não foi localizado na base de dados"));
+	}
+	
+	public Optional<FuncionarioDTO> getOptionaFuncionario(String id) {
+		var funcionario = funcionarioRepository.findById(id);
+		if(funcionario.isEmpty())
+			return Optional.empty();
+		return Optional.of(new FuncionarioDTO(funcionario.get()));
 	}
 	
 	public FuncionarioDTO cadastraDadosFuncionario(FuncionarioForm form) {
@@ -63,9 +71,8 @@ public class FuncionarioService {
 		return listaDadosFuncionario;
 	}
 
-	public FuncionarioDTO consultaFuncionarioPorId(String id) {
-		Funcionario f = getFuncionario(id);
-		return new FuncionarioDTO(f);
+	public Optional<FuncionarioDTO> consultaFuncionarioPorId(String id) {
+		return getOptionaFuncionario(id);
 	}
 	
 	

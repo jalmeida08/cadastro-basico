@@ -52,8 +52,8 @@ public class FuncionarioController {
 	
 	@GetMapping("/{idFuncionario}")
 	public ResponseEntity<?> buscaFuncionarioPorId(@PathVariable("idFuncionario") String id) {
-		FuncionarioDTO f = funcionarioService.consultaFuncionarioPorId(id);
-		return ResponseEntity.ok(f);
+		var dto = funcionarioService.consultaFuncionarioPorId(id);
+		return ResponseEntity.ok(dto);
 		
 	}
 	

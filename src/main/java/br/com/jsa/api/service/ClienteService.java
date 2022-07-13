@@ -2,6 +2,7 @@ package br.com.jsa.api.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,16 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	private Cliente getCliente(String id) {
+	public Optional<Cliente> getOptionalCliente(String id) {
 		return clienteRepository
-				.findById(id)
-				.orElseThrow(() -> new ParametroInvalidoException("Cliente não foi localizado com o id informado"));
+				.findById(id);
 	}
-
-	public ClienteDTO buscaClientePorId(String id) {
-		return new ClienteDTO(getCliente(id));
+	
+	public Optional<ClienteDTO> buscaClientePorId(String id) {
+		var c = getOptionalCliente(id);
+		if(c.isEmpty())
+			return Optional.empty();
+		return Optional.of(new ClienteDTO(c.get()));
 	}
 	
 	public ClienteDTO salvaCliente(ClienteForm clienteForm) {

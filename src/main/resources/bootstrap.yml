@@ -6,3 +6,4 @@ spring:
   cloud:
     config:
       uri: "${PROTOCOLO}://${CONFIG_SERVER_URL}:${CONFIG_SERVER_PORT}"
+      

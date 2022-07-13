@@ -1,5 +1,10 @@
 server:
   port: 8082
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
   
 eureka:
   client:
@@ -16,4 +21,6 @@ security:
   oauth2:
     resource:
       user-info-uri: "${PROTOCOLO}://${OAUTH_URL}:${OAUTH_PORT}/user"
+
+
       
