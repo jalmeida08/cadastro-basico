@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jsa.api.dto.FuncionarioDTO;
+import br.com.jsa.api.dto.MensagemRespostaDTO;
 import br.com.jsa.api.dto.VerificaIdFuncionarioDTO;
 import br.com.jsa.api.form.FuncionarioForm;
 import br.com.jsa.api.service.FuncionarioService;
@@ -33,8 +34,9 @@ public class FuncionarioController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<?> cadastraDadosFuncionario(@RequestBody FuncionarioForm form) {
-		FuncionarioDTO f = this.funcionarioService.cadastraDadosFuncionario(form);
-		return ResponseEntity.ok(f);
+		this.funcionarioService.cadastraDadosFuncionario(form);
+		return ResponseEntity.ok(new MensagemRespostaDTO("Estamos processando sua solicitação, "
+				+ "em breve enviaremos os dados para o email cadastrado"));
 	}
 	
 	@GetMapping

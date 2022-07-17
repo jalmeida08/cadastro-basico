@@ -8,6 +8,7 @@ public class FuncionarioForm {
 
 	private String nome;
 	private LocalDate dataNascimento;
+	private String email;
 
 	public FuncionarioForm() {}
 	
@@ -32,6 +33,14 @@ public class FuncionarioForm {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

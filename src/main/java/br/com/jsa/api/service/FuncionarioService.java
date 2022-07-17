@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.jsa.api.dto.FuncionarioDTO;
+import br.com.jsa.api.dto.NovoUsuarioDTO;
 import br.com.jsa.api.dto.VerificaIdFuncionarioDTO;
 import br.com.jsa.api.form.FuncionarioForm;
 import br.com.jsa.infra.exception.ParametroInvalidoException;
+import br.com.jsa.infra.kafka.FuncionarioProduce;
 import br.com.jsa.infra.model.Funcionario;
 import br.com.jsa.infra.repository.FuncionarioRepository;
 
@@ -20,6 +22,9 @@ public class FuncionarioService {
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
+	
+	@Autowired
+	private FuncionarioProduce funcionarioProduce;
 
 	public Funcionario getFuncionario(String id) {
 		return funcionarioRepository
@@ -36,6 +41,7 @@ public class FuncionarioService {
 	
 	public FuncionarioDTO cadastraDadosFuncionario(FuncionarioForm form) {
 		Funcionario f = this.funcionarioRepository.save(form.toFuncionario());
+		this.funcionarioProduce.salvaUsuario(new NovoUsuarioDTO(form.getEmail(), form.getNome(), f.getId()));
 		return new FuncionarioDTO(f);
 	}
 	
