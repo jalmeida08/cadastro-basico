@@ -43,5 +43,12 @@ security:
 
 app:
   kafka:
-    novo-funcionario:
-      topic: cadastroBasico_novoFuncionario
+    producer:
+      pessoa:
+        nova-pessoa:
+          topic: CADASTROBASICO_NOVA_PESSOA
+    consumer:
+      usuario:
+        erro-novo-usuario:
+          topic: USUARIO_ERRO_NOVO_USUARIO
+          group-id: CadastroBasico_NovoUsuarioErrorConsumer

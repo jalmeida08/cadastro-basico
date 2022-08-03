@@ -4,8 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Pessoa {
+import org.springframework.data.annotation.Id;
 
+public abstract class Pessoa {
+	
+	@Id
+	private String id;
 	private String nome;
 	private LocalDate dataNascimento;
 	private List<Contato> contato = new ArrayList<>();
@@ -28,6 +32,8 @@ public abstract class Pessoa {
 	public void setContato(List<Contato> contato) {
 		this.contato = contato;
 	}
-	
+	public String getId() {
+		return id;
+	}
 	
 }

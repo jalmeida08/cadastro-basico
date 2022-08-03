@@ -13,7 +13,7 @@ import br.com.jsa.api.dto.NovoUsuarioDTO;
 import br.com.jsa.api.dto.VerificaIdFuncionarioDTO;
 import br.com.jsa.api.form.FuncionarioForm;
 import br.com.jsa.infra.exception.ParametroInvalidoException;
-import br.com.jsa.infra.kafka.FuncionarioProduce;
+import br.com.jsa.infra.kafka.producer.PessoaProduce;
 import br.com.jsa.infra.model.Funcionario;
 import br.com.jsa.infra.repository.FuncionarioRepository;
 
@@ -24,7 +24,7 @@ public class FuncionarioService {
 	private FuncionarioRepository funcionarioRepository;
 	
 	@Autowired
-	private FuncionarioProduce funcionarioProduce;
+	private PessoaProduce funcionarioProduce;
 
 	public Funcionario getFuncionario(String id) {
 		return funcionarioRepository
@@ -79,6 +79,11 @@ public class FuncionarioService {
 
 	public Optional<FuncionarioDTO> consultaFuncionarioPorId(String id) {
 		return getOptionaFuncionario(id);
+	}
+	
+	public void removeFuncionario(String id){
+		Funcionario f = this.getFuncionario(id);
+		this.funcionarioRepository.delete(f);
 	}
 	
 	
