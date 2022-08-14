@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public abstract class Pessoa {
+@Document(collection = "pessoa")
+public class Pessoa {
 	
 	@Id
 	private String id;

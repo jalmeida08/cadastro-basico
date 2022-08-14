@@ -43,10 +43,6 @@ security:
 
 app:
   kafka:
-    producer:
-      pessoa:
-        nova-pessoa:
-          topic: CADASTROBASICO_NOVA_PESSOA
     consumer:
       usuario:
         erro-novo-usuario:

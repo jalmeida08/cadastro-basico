@@ -1,4 +1,4 @@
-package br.com.jsa.infra.kafka.consumer;
+package br.com.jsa.api.kafka.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.jsa.api.dto.NovoUsuarioDTO;
-import br.com.jsa.api.service.FuncionarioService;
+import br.com.jsa.api.service.PessoaService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -23,7 +23,7 @@ public class NovoUsuarioErrorConsumer {
 	
 
 	@Autowired
-	private FuncionarioService funcionarioService;
+	private PessoaService pessoaService;
 	
 	@KafkaListener(
 			topics ="${app.kafka.consumer.usuario.erro-novo-usuario.topic}",
@@ -32,7 +32,7 @@ public class NovoUsuarioErrorConsumer {
 	private void erroNovoUsuarioFuncionario(NovoUsuarioDTO dto) {
 		
 		logger.info("INICIO :: REMOVENDO FUNCIONARIO");
-		this.funcionarioService.removeFuncionario(dto.getPessoaId());
+		this.pessoaService.removePessoa(dto.getPessoaId());
 		logger.info("FIM :: REMOVENDO FUNCIONARIO");
 	}
 

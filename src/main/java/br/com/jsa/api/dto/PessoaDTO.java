@@ -2,18 +2,18 @@ package br.com.jsa.api.dto;
 
 import java.time.LocalDate;
 
-import br.com.jsa.infra.model.Funcionario;
+import br.com.jsa.infra.model.Pessoa;
 
-public class FuncionarioDTO {
+public class PessoaDTO {
 
 	private String id;
 	private String nome;
 	private LocalDate dataNascimento;
 	
-	public FuncionarioDTO(Funcionario f) {
-		this.id = f.getId();
-		this.nome = f.getNome();
-		this.dataNascimento = f.getDataNascimento();
+	public PessoaDTO(Pessoa p) {
+		this.id = p.getId();
+		this.nome = p.getNome();
+		this.dataNascimento = p.getDataNascimento();
 	}
 	public String getId() {
 		return id;

@@ -2,18 +2,20 @@ package br.com.jsa.api.form;
 
 import java.time.LocalDate;
 
-import br.com.jsa.infra.model.Cliente;
+import br.com.jsa.infra.model.Pessoa;
 
-public class ClienteForm {
+public class PessoaForm {
 
 	private String nome;
 	private LocalDate dataNascimento;
 
-	public Cliente toCliente() {
-		Cliente c = new Cliente();
-		c.setNome(this.nome);
-		c.setDataNascimento(this.dataNascimento);
-		return c;
+	public PessoaForm() {}
+	
+	public Pessoa toPessoa() {
+		var p = new Pessoa();
+		p.setNome(this.nome);
+		p.setDataNascimento(this.dataNascimento);
+		return p;
 	}
 
 	public String getNome() {
@@ -31,4 +33,5 @@ public class ClienteForm {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	
 }
